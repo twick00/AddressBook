@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Address Book - Add a contact.";
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Use this area to provide additional information.</p>
+
+
+<form action="/edit" method="POST" class="form-inline" role="form">
+    <div class="col-3-xl">
+    <div class="form-group">
+        <label class="sr-only" for="">label</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">label</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone: Ex. 4255307863">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">label</label>
+        <input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="Street Address">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">label</label>
+        <input type="text" class="form-control" id="city" name="city" placeholder="City">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">label</label>
+        <input type="text" class="form-control" id="state" name="state" placeholder="State">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">label</label>
+        <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="ZipCode">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

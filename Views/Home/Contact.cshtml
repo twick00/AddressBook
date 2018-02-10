@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+}
+<ul>
+<li>@Model.GetName()</li>
+<li>@Model.GetPhone(true)</li>
+<li>@Model.GetAddress().GetFullAddress()</li>
+<li>@Model.GetAddress().GetCity()</li>
+<li>@Model.GetAddress().GetState()</li>
+</ul>
+
+
+<form action="/edit/@Model.GetID()" method="POST" class="form-inline" role="form">
+    <div class="col-md-3">
+    <div class="form-group">
+        <label class="sr-only" for="">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="@Model.GetName()">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">Phone</label>
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="@Model.GetPhone(false)">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">Street Address</label>
+        <input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="@Model.GetAddress().GetStreetAddress()">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">City</label>
+        <input type="text" class="form-control" id="city" name="city" placeholder="@Model.GetAddress().GetCity()">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">State</label>
+        <input type="text" class="form-control" id="state" name="state" placeholder="@Model.GetAddress().GetState()">
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="">Zip-Code</label>
+        <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="@Model.GetAddress().GetZipCode()">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    <div class="col-md-9">
+    </div>
+</form>

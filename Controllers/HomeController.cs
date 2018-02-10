@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Address_Book.Models;
+
+namespace Address_Book.Controllers
+{
+    public class HomeController : Controller
+    {
+        private Dictionary<int, Contact> AllContacts = Contact.GetAllContacts();
+        [HttpGet("/")]
+        public IActionResult Index()
+        {
+            AllContacts = Contact.GetAllContacts();
+            return View("index", AllContacts);
+        }
+        [HttpGet("/{id}")]
+        public IActionResult Index(int id)
+        {
+            AllContacts = Contact.GetAllContacts();
+            return View("index", AllContacts[id]);
+        }
+
+        [HttpGet("/addcontact")]
+        public IActionResult AddContact()
+        {
+            ViewData["Message"] = "Your application description page.";
+            return View();
+        }
+
+        [HttpGet("/test")]
+        public IActionResult Test()
+        {
+            Contact cont = new Contact("Tyler Wickline", "4255555555","1010 Huntsfield Ave Ne", "Everett","Wa","99999");
+            AllContacts = Contact.GetAllContacts();
+            return View("index");
+        }
+        
+        [HttpGet("/contact/{id}")]
+        public IActionResult Contacts(int id)
+        {
+            return View("Contact", AllContacts[id]);
+        }
+        [HttpPost("/edit")]
+        public IActionResult Edit(int id)
+        {   
+            Console.WriteLine(Request.Form["name"]);
+            AllContacts[id].SetName(Request.Form["name"]);
+            AllContacts[id].SetPhone(Request.Form["phone"]);
+            AllContacts[id].GetAddress().SetStreetAddress(Request.Form["streetAddress"]);
+            AllContacts[id].GetAddress().SetCity(Request.Form["city"]);
+            AllContacts[id].GetAddress().SetState(Request.Form["state"]);
+            AllContacts[id].GetAddress().SetZipCode(Request.Form["zipCode"]);
+            AllContacts = Contact.GetAllContacts();
+            return View("index", AllContacts);
+        }
+
+        public IActionResult Error()
+        {
+            return View();
+        }
+    }
+}
