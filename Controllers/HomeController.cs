@@ -24,10 +24,17 @@ namespace Address_Book.Controllers
         }
 
         [HttpGet("/addcontact")]
-        public IActionResult AddContact()
+        public IActionResult NewContact()
         {
             ViewData["Message"] = "Your application description page.";
-            return View();
+            return View("AddContact");
+        }
+        [HttpPost("/addcontact")]
+        public IActionResult CreateNewContact()
+        {
+            Contact newContact = new Contact(Request.Form["name"],Request.Form["phone"],Request.Form["streetAddress"],Request.Form["city"],Request.Form["state"],Request.Form["zipCode"]);
+            AllContacts = Contact.GetAllContacts();
+            return View("index", AllContacts);
         }
 
         [HttpGet("/test")]
@@ -46,7 +53,6 @@ namespace Address_Book.Controllers
         [HttpPost("/edit")]
         public IActionResult Edit(int id)
         {   
-            Console.WriteLine(Request.Form["name"]);
             AllContacts[id].SetName(Request.Form["name"]);
             AllContacts[id].SetPhone(Request.Form["phone"]);
             AllContacts[id].GetAddress().SetStreetAddress(Request.Form["streetAddress"]);

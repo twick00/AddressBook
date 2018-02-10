@@ -35,3 +35,7 @@ textarea {
         display: none;
     }
 }
+
+.col-xs-4 {
+    padding-bottom: 10px;
+}
