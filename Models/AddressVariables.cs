@@ -32,15 +32,14 @@ namespace Address_Book.Models
         }
         public string GetPhone(bool isFormated)
         {
-            return _phoneNumber;
-            // if (isFormated == true)
-            // {
-            //     return _phoneNumber;
-            // }
-            // else 
-            // {
-            //     return new String(_phoneNumber.Where(Char.IsDigit).ToArray());
-            // }
+            if (isFormated == true)
+            {
+                return _phoneNumber;
+            }
+            else 
+            {
+                return new String(_phoneNumber.Where(Char.IsDigit).ToArray());
+            }
         }
         public void SetPhone(string phoneNumber)
         {
