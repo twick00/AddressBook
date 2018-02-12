@@ -1,47 +1,67 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Address Book - Contact Details";
 }
-<ul>
-<li>@Model.GetName()</li>
-<li>@Model.GetPhone(true)</li>
-<li>@Model.GetAddress().GetFullAddress()</li>
-<li>@Model.GetAddress().GetCity()</li>
-<li>@Model.GetAddress().GetState()</li>
-</ul>
 
-<div class="container-fluid">
-<form action="/edit/@Model.GetID()" method="POST" class="form-inline" role="form">
-    <div class="col-xl-12">
-    <div class="form-group">
-        <label class="sr-only" for="">Name</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="@Model.GetName()">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="">Phone</label>
-        <input type="text" class="form-control" id="phone" name="phone" placeholder="@Model.GetPhone(false)">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="">Street Address</label>
-        <input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="@Model.GetAddress().GetStreetAddress()">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="">City</label>
-        <input type="text" class="form-control" id="city" name="city" placeholder="@Model.GetAddress().GetCity()">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="">State</label>
-        <input type="text" class="form-control" id="state" name="state" placeholder="@Model.GetAddress().GetState()">
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="">Zip-Code</label>
-        <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="@Model.GetAddress().GetZipCode()">
-    </div>
-    <br>
+<style>
+    .form-control {margin-bottom: 20px; width: 90%;}
+    .table {height: 90%;}
+</style>
+<div class="container">
     <div class="row">
-        <div class="col-xs-2">
-            <button type="submit" class="btn btn-primary">Submit</button>
+    <form action="/edit/@Model.GetID()" method="POST" class="form-inline" role="form">
+        <div class="col-xl-4">
+        <div class="form-group">
+            <label class="sr-only" for="">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="@Model.GetName()" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="@Model.GetPhone(false)" placeholder="Phone #">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="">Street Address</label>
+            <input type="text" class="form-control" id="streetAddress" name="streetAddress" value="@Model.GetAddress().GetStreetAddress()"  placeholder="Street Address">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="">City</label>
+            <input type="text" class="form-control" id="city" name="city" value="@Model.GetAddress().GetCity()" placeholder="City">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="">State</label>
+            <input type="text" class="form-control" id="state" name="state" value="@Model.GetAddress().GetState()"  placeholder="State">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="">Zip-Code</label>
+            <input type="text" class="form-control" id="zipCode" name="zipCode" value="@Model.GetAddress().GetZipCode()" placeholder="Zip-Code">
+        </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+        <div class="col">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Name: </th>
+                        <td>@Model.GetName()</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Phone: </th>
+                        <td>@Model.GetPhone(true)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Address: </th>
+                        <td>@Model.GetAddress().GetFullAddress()</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">City: </th>
+                        <td>@Model.GetAddress().GetCity()</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">State: </th>
+                        <td>@Model.GetAddress().GetState()</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    </div>
-</form>
 </div>

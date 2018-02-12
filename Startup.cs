@@ -39,6 +39,9 @@ namespace Address_Book
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseStatusCodePagesWithReExecute("/");
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }

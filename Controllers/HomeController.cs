@@ -16,13 +16,6 @@ namespace Address_Book.Controllers
             AllContacts = Contact.GetAllContacts();
             return View("index", AllContacts);
         }
-        [HttpGet("/{id}")]
-        public IActionResult Index(int id)
-        {
-            AllContacts = Contact.GetAllContacts();
-            return View("index", AllContacts[id]);
-        }
-
         [HttpGet("/addcontact")]
         public IActionResult NewContact()
         {
@@ -44,7 +37,20 @@ namespace Address_Book.Controllers
             AllContacts = Contact.GetAllContacts();
             return View("index");
         }
-        
+        [HttpPost("/contact/delete/{id}")]
+        public IActionResult DelContact(int id)
+        {
+            if (Contact.RemoveContact(id))
+            {
+                Console.WriteLine("Removed");
+            }
+            else
+            {
+                Console.WriteLine("Not Removed");
+            }
+            AllContacts = Contact.GetAllContacts();
+            return View("index", AllContacts);
+        }
         [HttpGet("/contact/{id}")]
         public IActionResult Contacts(int id)
         {

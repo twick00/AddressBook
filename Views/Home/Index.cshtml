@@ -1,32 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿<style>.card-columns {display: inline-block}</style>
+@{
+    ViewData["Title"] = "Address Book - Contact Index";
 }
-<h1> Test </h1>
-<style>.card-columns {display: inline-block}</style>
+<div class="container">
+    <div class="row">
 @if (Model != null)
 {
-<div class="card-deck" style="display: inline-block">
+<div class="card-deck" style="width: 100%;">
 @foreach(var contact in Model)
     {
-        <div class="col-xl-6">
-            <div class="card" style="width: 20rem">
-                <div class="card-block">
-                    <h4 class="card-title">@contact.Value.GetName() #@contact.Key</h4>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><p>Phone:</p>@contact.Value.GetPhone(true)</li>
-                        <li class="list-group-item">@contact.Value.GetAddress().GetFullAddress()</li>
-                    </ul>
-                </div>
-                <div class="card-footer">
-                <small class="text-muted"><a href="/contact/@contact.Key" class="btn btn-primary">View Contact Details</a></small>
+    <div class="col-xl-3 col-lg-4 col-md-6 pb-4 id-@contact.Key">
+        <div class="card cad-outline-info">
+            <div class="card-block">
+                <h5 class="card-title pl-2">@contact.Value.GetName()</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">@contact.Value.GetPhone(true)</li>
+                    <li class="list-group-item">@contact.Value.GetAddress().GetFullAddress()</li>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <form action="/contact/delete/@contact.Key" method="post" id="delete"></form>
+                <a  class="btn btn-primary" type="submit" role="button" href="/contact/@contact.Key">View Contact</a>
+                <button class="float-right btn btn-danger" type="submit" form="delete">X</button>
             </div>
         </div>
-        </div>
+    </div>
     }
 </div>
-}
 
-<div class="container-fluid">
-    <hr>
-<a href='/addcontact'>Add A Contact</a>
+} else {
+    <h3>Add some contacts first.</h3>
+}
+    </div>
 </div>

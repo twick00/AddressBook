@@ -22,6 +22,17 @@ namespace Address_Book.Models
             _address = new Address (streetAddress,city,state,zipCode);
             SaveContact();
         }
+        public static bool RemoveContact(int id)
+        {
+            if (AllContacts.Remove(id))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public string GetName()
         {
             return _contactName;
@@ -67,7 +78,7 @@ namespace Address_Book.Models
             }
             else
             {
-                return "Error";
+                return "You entered an invalid number.";
             }
         }
     }

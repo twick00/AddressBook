@@ -4,11 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"]</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    @*<script src="~../../wwwroot/js/site.js"></script>*@
+    <style>
+        body {background-color: #fff; height: 100%;}
+    </style>
 </head>
 <body>
-    <div class="container">
-    @RenderBody()
+    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+        <div class="container">
+  <a class="navbar-brand" href="/">Address-Book</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/addcontact">Add New Contact</a>
+      </li>
+    </ul>
     </div>
+  </div>
+</nav>
+        @RenderBody()
 </body>
 </html>
