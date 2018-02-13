@@ -27,7 +27,7 @@ namespace Address_Book.Controllers
         {
             Contact newContact = new Contact(Request.Form["name"],Request.Form["phone"],Request.Form["streetAddress"],Request.Form["city"],Request.Form["state"],Request.Form["zipCode"]);
             AllContacts = Contact.GetAllContacts();
-            return View("index", AllContacts);
+            return RedirectToAction("Index");
         }
 
         [HttpGet("/test")]
