@@ -19,7 +19,6 @@ namespace Address_Book.Controllers
         [HttpGet("/addcontact")]
         public IActionResult NewContact()
         {
-            ViewData["Message"] = "Your application description page.";
             return View("AddContact");
         }
         [HttpPost("/addcontact")]
@@ -29,7 +28,17 @@ namespace Address_Book.Controllers
             AllContacts = Contact.GetAllContacts();
             return RedirectToAction("Index");
         }
-
+        [HttpGet("/clearcontacts")]
+        public IActionResult ClearContacts()
+        {
+            return View("Clearcontacts");
+        }
+        [HttpPost("/clearcontacts")]
+        public IActionResult PostClearContacts()
+        {
+            AllContacts.Clear();
+            return RedirectToAction("Index");
+        }
         [HttpGet("/test")]
         public IActionResult Test()
         {
@@ -56,7 +65,7 @@ namespace Address_Book.Controllers
         {
             return View("Contact", AllContacts[id]);
         }
-        [HttpPost("/edit")]
+        [HttpPost("/edit/{id}")]
         public IActionResult Edit(int id)
         {   
             AllContacts[id].SetName(Request.Form["name"]);
@@ -66,7 +75,7 @@ namespace Address_Book.Controllers
             AllContacts[id].GetAddress().SetState(Request.Form["state"]);
             AllContacts[id].GetAddress().SetZipCode(Request.Form["zipCode"]);
             AllContacts = Contact.GetAllContacts();
-            return View("index", AllContacts);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Error()
